@@ -1,6 +1,10 @@
 print("fieldbook_py active")
 
 
+def alive():
+    return "fieldbook_py is alive!"
+
+
 class FieldbookClient(object):
 
     def __init__(self, api_key, api_secret):

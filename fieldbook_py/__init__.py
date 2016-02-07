@@ -1,5 +1,3 @@
-import controller
+from .controller import alive
 
-
-def alive():
-    print("fieldbook_py is alive!")
+alive()
