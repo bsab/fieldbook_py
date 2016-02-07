@@ -8,4 +8,6 @@ setup(name='fieldbook_py',
       author_email='git@stibbsy.co.uk',
       license='MIT',
       packages=['fieldbook_py'],
+      test_suite='nose.collector',
+      tests_require=['nose'],
       zip_safe=False)
