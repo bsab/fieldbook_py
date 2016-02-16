@@ -1,3 +1,7 @@
+import logging
+
+log = logging.getLogger('fieldbook-py')
+
 print("fieldbook_py active")
 
 
