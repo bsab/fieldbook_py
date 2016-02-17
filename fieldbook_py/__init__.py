@@ -1,4 +1,4 @@
-from .controller import alive
+from .controller import *
 import logging
 
 # Set up logging
