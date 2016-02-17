@@ -1,3 +1,5 @@
+import requests
+import json
 import logging
 
 log = logging.getLogger('fieldbook-py')
