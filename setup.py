@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='fieldbook_py',
-      version='0.2',
+      version='0.2.1',
       description='Helper package for using the Fieldbook.com API',
       classifiers=[
         'Development Status :: 3 - Alpha',
@@ -14,8 +14,7 @@ setup(name='fieldbook_py',
       license='MIT',
       packages=['fieldbook_py'],
       install_requires=[
-            'requests',
-            'json'
+            'requests'
       ],
       test_suite='nose.collector',
       tests_require=['nose'],
