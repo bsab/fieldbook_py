@@ -13,11 +13,11 @@ def alive():
 
 class FieldbookClient(object):
 
-    def __init__(self, api_key, api_secret, sheet_ref):
+    def __init__(self, api_key, api_secret, fieldbook_url):
 
-        self.__api_key = api_key
-        self.__api_secret = api_secret
-        self.__sheet_ref = sheet_ref
+        self.__key = api_key
+        self.__secret = api_secret
+        self.__url = fieldbook_url
         pass
 
     def get_rows(self, sheet):
