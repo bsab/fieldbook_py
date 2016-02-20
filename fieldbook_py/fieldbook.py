@@ -5,12 +5,6 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-logger.debug('fieldbook_py active')
-
-
-def alive():
-    print("fieldbook_py is alive!")
-
 
 class FieldbookClient(object):
 
