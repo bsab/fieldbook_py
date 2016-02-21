@@ -24,9 +24,7 @@ To use, simply do:
     >>> fieldbook = fieldbook_py.FieldbookClient('api_key_here',
                                                  'api_secret_here',
                                                  'fieldbook_url_here')
-
     >>> returned_rows = fieldbook.get_all_rows('sheet_name')
-
     >>> print(returned_rows)
 
 If you want to include or exclude certain fields from the response:
