@@ -1,14 +1,18 @@
+============
 fieldbook_py
 ============
+------------------------------------------------------------------
 A simple Python package for interacting with the Fieldbook.com API
----------------------------------------------------------
+------------------------------------------------------------------
 
 **PLEASE NOTE: This package is still in development so please use with caution.**
 
-## Contributing
+Contributing
+------------
 If you would like to help in any way please dig in! Raise issues, or issue pull requests - anything appreciated!
 
-## Getting Started
+Getting Started
+---------------
 To install the package:
 
     >>> pip install fieldbook_py
