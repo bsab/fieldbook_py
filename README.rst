@@ -1,9 +1,13 @@
-Fieldbook_py
-------------
+fieldbook_py
+============
+Python helper package for accessing the Fieldbook.com API
+---------------------------------------------------------
 
 A simple python package for interacting with the Fieldbook.com API
 
 PLEASE NOTE: This package is still in development so please use with caution.
+
+If you would like to help in any way please dig in! Raise issues, or issue pull requests - anything appreciated!
 
 To install the package:
 
