@@ -1,1 +1,1 @@
-from fieldbook import FieldbookClient
+from fieldbook_py.fieldbook import FieldbookClient
