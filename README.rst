@@ -17,23 +17,35 @@ To use, simply do:
                                                  'api_secret_here',
                                                  'fieldbook_url_here')
 
-    >>> all_rows = fieldbook.get_rows('sheet_name')
+    >>> returned_rows = fieldbook.get_all_rows('sheet_name')
 
-    >>> print(all_rows)
+    >>> print(returned_rows)
+
+If you want to include or exclude certain fields from the response:
+
+    >>> returned_rows = fieldbook.get_all_rows('sheet_name',
+                                          include_fields=('field1', 'field3'),
+                                          exclude_fields=('field2',))
+    >>> print(returned_rows)
+
+To add a new row:
+
     >>> new_data = {
             'field_name_1': 'new_value_1',
             'field_name_2': 'new_value_2',
             'field_name_3': 3
         }
-
     >>> new_row = fieldbook.add_row('sheet_name', new_data)
     >>> print(new_row)
+
+To update an existing row:
 
     >>> updated_data = {
             'field_name_2': 'updated_value_2'
         }
     >>> fieldbook.update_row('sheet_name', 3, updated_data)
 
-    >>> fieldbook.delete_row('sheet_name', 3)
+To delete an existing row:
 
+    >>> fieldbook.delete_row('sheet_name', 3)
 
