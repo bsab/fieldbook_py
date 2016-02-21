@@ -29,18 +29,27 @@ class FieldbookClient(object):
 
         return result
 
-    def get_rows(self, sheet):
+    def get_all_rows(self, sheet, include_fields=None, exclude_fields=None):
         """Get all rows in a Fieldbook sheet"""
         url = str.format('{0}{1}{2}', self.__url, '/', sheet)
         print(url)
 
+        query_parameters = {}
+
+        if include_fields:
+            query_parameters['include'] = ','.join(include_fields)
+
+        if exclude_fields:
+            query_parameters['exclude'] = ','.join(exclude_fields)
+
         try:
             request = requests.get(url,
-                                   auth=(self.__key, self.__secret))
+                                   auth=(self.__key, self.__secret),
+                                   params=query_parameters)
             return request.json()
 
         except requests.ConnectionError as e:
-            logger.error('Cannot connect to Fieldbook')
+            logger.error('Cannot connect to Fieldbook API')
             logger.error(e)
 
         except Exception as e:

@@ -1,1 +1,1 @@
-from fieldbook import *
+from fieldbook import FieldbookClient
