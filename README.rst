@@ -7,6 +7,11 @@ A simple Python package for interacting with the Fieldbook.com API
 
 **PLEASE NOTE: This package is still in development so please use with caution.**
 
+.. image:: https://travis-ci.org/mattstibbs/fieldbook_py.svg?branch=master
+    :target: https://travis-ci.org/mattstibbs/fieldbook_py
+.. image:: https://travis-ci.org/mattstibbs/fieldbook_py.svg?branch=develop
+    :target: https://travis-ci.org/mattstibbs/fieldbook_py
+
 Contributing
 ------------
 If you would like to help in any way please dig in! Raise issues, or issue pull requests - anything appreciated!
