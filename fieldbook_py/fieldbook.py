@@ -29,10 +29,10 @@ class FieldbookClient(object):
 
         return result
 
-    def get_all_rows(self, sheet, include_fields=None, exclude_fields=None):
-        """Get all rows in a Fieldbook sheet"""
-        url = str.format('{0}{1}{2}', self.__url, '/', sheet)
-        print(url)
+    def get_row(self, sheet, row_id, include_fields=None, exclude_fields=None, **kwargs):
+        """Get a single row in a Fieldbook sheet"""
+        url = '{0}/[1}/{2}'.format(self.__url, sheet, row_id)
+        logger.debug('Resource URL is: {url}'.format(url=url))
 
         query_parameters = {}
 
@@ -42,10 +42,42 @@ class FieldbookClient(object):
         if exclude_fields:
             query_parameters['exclude'] = ','.join(exclude_fields)
 
+        for key, value in kwargs.iteritems():
+            query_parameters[key] = value
+
         try:
             request = requests.get(url,
                                    auth=(self.__key, self.__secret),
                                    params=query_parameters)
+            return request.json()
+
+        except requests.ConnectionError as e:
+            logger.error('Cannot connect to Fieldbook API', exc_info=True)
+
+        except Exception as e:
+            logger.error(exc_info=True)
+
+    def get_all_rows(self, sheet, include_fields=None, exclude_fields=None, **kwargs):
+        """Get all rows in a Fieldbook sheet"""
+        url = str.format('{0}{1}{2}', self.__url, '/', sheet)
+        logger.debug('Resource URL is: {url}'.format(url=url))
+
+        query_parameters = {}
+
+        if include_fields:
+            query_parameters['include'] = ','.join(include_fields)
+
+        if exclude_fields:
+            query_parameters['exclude'] = ','.join(exclude_fields)
+
+        for key, value in kwargs.iteritems():
+            query_parameters[key] = value
+
+        try:
+            request = requests.get(url,
+                                   auth=(self.__key, self.__secret),
+                                   params=query_parameters)
+            logger.debug('JSON: {json}'.format(json=request.json()))
             return request.json()
 
         except requests.ConnectionError as e:

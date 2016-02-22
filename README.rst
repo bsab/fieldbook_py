@@ -7,6 +7,14 @@ A simple Python package for interacting with the Fieldbook.com API
 
 **PLEASE NOTE: This package is still in development so please use with caution.**
 
+master:
+.. image:: https://travis-ci.org/mattstibbs/fieldbook_py.svg?branch=master
+    :target: https://travis-ci.org/mattstibbs/fieldbook_py
+
+develop:
+.. image:: https://travis-ci.org/mattstibbs/fieldbook_py.svg?branch=develop
+    :target: https://travis-ci.org/mattstibbs/fieldbook_py
+
 Contributing
 ------------
 If you would like to help in any way please dig in! Raise issues, or issue pull requests - anything appreciated!
@@ -27,11 +35,24 @@ To use, simply do:
     >>> returned_rows = fieldbook.get_all_rows('sheet_name')
     >>> print(returned_rows)
 
-If you want to include or exclude certain fields from the response:
+You can also get a single row:
+
+    >>> returned_rows = fieldbook.get_row('sheet_name', row_id)
+    >>> print(returned_rows)
+
+On both get functions, you can include or exclude certain fields from the response:
 
     >>> returned_rows = fieldbook.get_all_rows('sheet_name',
-                                          include_fields=('field1', 'field3'),
-                                          exclude_fields=('field2',))
+                                               include_fields=('field1', 'field3'),
+                                               exclude_fields=('field2',))
+    >>> print(returned_rows)
+
+You can also pass arbitrary query parameters (for instance to apply field filters) by using kwargs:
+
+    >>> returned_rows = fieldbook.get_all_rows('sheet_name',
+                                               include_fields=('field1', 'field3'),
+                                               exclude_fields=('field2',),
+                                               name='Matt')
     >>> print(returned_rows)
 
 To add a new row:
