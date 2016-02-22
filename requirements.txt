@@ -1,1 +1,3 @@
-requests
+pytest==2.8.7
+pytest-runner==2.7
+requests==2.9.1
