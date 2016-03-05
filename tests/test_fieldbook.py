@@ -10,7 +10,12 @@ class TestClass:
         fbc = get_fieldbook_client()
         assert isinstance(fbc, fieldbook.FieldbookClient)
 
-    def test_patch_url_correctly_formatted(self):
+    def test_sheet_resource_url_correctly_formatted(self):
         fbc = get_fieldbook_client()
-        result = fbc.get_single_resource_url('test_sheet_name', 33)
+        result = fbc.get_resource_url('test_sheet_name')
+        assert result == 'https://test.fieldbook.url/v1/312f984h3fjgf0i3h4/test_sheet_name'
+
+    def test_row_resource_url_correctly_formatted(self):
+        fbc = get_fieldbook_client()
+        result = fbc.get_resource_url('test_sheet_name', 33)
         assert result == 'https://test.fieldbook.url/v1/312f984h3fjgf0i3h4/test_sheet_name/33'
