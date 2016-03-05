@@ -89,7 +89,7 @@ class FieldbookClient(object):
 
     def update_row(self, sheet, row_id, patch_record):
         """Update an existing row in a Fieldbook sheet"""
-        url = str.format('{0}{1}{2}{3}', self.__url, '/', sheet, '/', row_id)
+        url = self.get_single_resource_url(sheet, row_id)
         print(url)
 
         request = requests.patch(url, auth=(self.__key, self.__secret), json = patch_record)
@@ -110,3 +110,6 @@ class FieldbookClient(object):
 
         result = request.status_code
         logger.debug(result)
+
+    def get_single_resource_url(self, sheet_name, row_id):
+        return str.format('{0}{1}{2}{3}{4}', self.__url, '/', sheet_name, '/', row_id)
