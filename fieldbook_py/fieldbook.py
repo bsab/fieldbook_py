@@ -16,23 +16,21 @@ class FieldbookClient(object):
         self.__url = fieldbook_url
         pass
 
-    def add_row(self, sheet, new_record):
+    def add_row(self, sheet, new_record_data):
         """Add a row to a Fieldbook sheet"""
-        url = str.format('{0}{1}{2}', self.__url, '/', sheet)
-        print(url)
+        url = self.get_resource_url(sheet)
 
-        request = requests.post(url, auth=(self.__key, self.__secret), json = new_record)
-        print(request.status_code)
+        request = requests.post(url, auth=(self.__key, self.__secret), json = new_record_data)
+        logger.debug("Status Code: {0}".format(request.status_code))
 
         result = json.loads(request.text)
-        print(result)
+        logger.debug(result)
 
         return result
 
     def get_row(self, sheet, row_id, include_fields=None, exclude_fields=None, **kwargs):
         """Get a single row in a Fieldbook sheet"""
-        url = '{0}/[1}/{2}'.format(self.__url, sheet, row_id)
-        logger.debug('Resource URL is: {url}'.format(url=url))
+        url = self.get_resource_url(sheet, row_id)
 
         query_parameters = {}
 
@@ -49,6 +47,7 @@ class FieldbookClient(object):
             request = requests.get(url,
                                    auth=(self.__key, self.__secret),
                                    params=query_parameters)
+            logger.debug("Status Code: {0}".format(request.status_code))
             return request.json()
 
         except requests.ConnectionError as e:
@@ -59,8 +58,7 @@ class FieldbookClient(object):
 
     def get_all_rows(self, sheet, include_fields=None, exclude_fields=None, **kwargs):
         """Get all rows in a Fieldbook sheet"""
-        url = str.format('{0}{1}{2}', self.__url, '/', sheet)
-        logger.debug('Resource URL is: {url}'.format(url=url))
+        url = self.get_resource_url(sheet)
 
         query_parameters = {}
 
@@ -77,7 +75,8 @@ class FieldbookClient(object):
             request = requests.get(url,
                                    auth=(self.__key, self.__secret),
                                    params=query_parameters)
-            logger.debug('JSON: {json}'.format(json=request.json()))
+            logger.debug("Status Code: {0}".format(request.status_code))
+            logger.debug('JSON: {0}'.format(request.json()))
             return request.json()
 
         except requests.ConnectionError as e:
@@ -87,26 +86,37 @@ class FieldbookClient(object):
         except Exception as e:
             logger.error(e)
 
-    def update_row(self, sheet, row_id, patch_record):
+    def update_row(self, sheet, row_id, patch_data):
         """Update an existing row in a Fieldbook sheet"""
-        url = str.format('{0}{1}{2}{3}', self.__url, '/', sheet, '/', row_id)
-        print(url)
+        url = self.get_resource_url(sheet, row_id)
 
-        request = requests.patch(url, auth=(self.__key, self.__secret), json = patch_record)
-        print(request.status_code)
+        request = requests.patch(url, auth=(self.__key, self.__secret), json = patch_data)
+        logger.debug("Status Code: {0}".format(request.status_code))
 
         result = json.loads(request.text)
-        print(result)
+        logger.debug(result)
 
         return result
 
     def delete_row(self, sheet, row_id):
         """Delete an existing row from a Fieldbook sheet"""
-        url = str.format('{0}{1}{2}{3}', self.__url, '/', sheet, '/', row_id)
-        logger.debug(url)
+        url = self.get_resource_url(sheet, row_id)
 
         request = requests.delete(url, auth=(self.__key, self.__secret))
-        logger.debug(request.status_code)
+        logger.debug("Status Code: {0}".format(request.status_code))
 
         result = request.status_code
         logger.debug(result)
+
+    def get_resource_url(self, sheet_name, row_id=None):
+        """Take sheet / row parameters and return a valid formatted URL for a fieldbook resource"""
+        if row_id:
+            # Return a URL for a specific row resource
+            url = str.format('{0}/{1}/{2}', self.__url, sheet_name, row_id)
+            logger.debug('URL: {0}'.format(url))
+            return url
+        else:
+            # Return a URL for a sheet resource
+            url = str.format('{0}/{1}', self.__url, sheet_name)
+            logger.debug('URL: {0}'.format(url))
+            return url

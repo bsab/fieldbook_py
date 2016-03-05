@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='fieldbook_py',
-      version='0.2.4',
+      version='0.2.5',
       description='Helper package for using the Fieldbook.com API',
       classifiers=[
         'Development Status :: 4 - Beta',
