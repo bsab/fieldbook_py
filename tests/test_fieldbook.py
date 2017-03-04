@@ -4,6 +4,7 @@ from context import fieldbook
 def get_fieldbook_client():
     return fieldbook.FieldbookClient('','','https://test.fieldbook.url/v1/312f984h3fjgf0i3h4')
 
+
 class TestClass:
 
     def test_can_instantiate_instance_of_fieldbookclient(self):
