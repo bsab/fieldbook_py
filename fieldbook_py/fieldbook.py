@@ -40,8 +40,9 @@ class FieldbookClient(object):
         if exclude_fields:
             query_parameters['exclude'] = ','.join(exclude_fields)
 
-        for key, value in kwargs.iteritems():
-            query_parameters[key] = value
+        if kwargs:
+            for key, value in kwargs.iteritems():
+                query_parameters[key] = value
 
         try:
             request = requests.get(url,
@@ -68,8 +69,9 @@ class FieldbookClient(object):
         if exclude_fields:
             query_parameters['exclude'] = ','.join(exclude_fields)
 
-        for key, value in kwargs.iteritems():
-            query_parameters[key] = value
+        if kwargs:
+            for key, value in kwargs.iteritems():
+                query_parameters[key] = value
 
         try:
             request = requests.get(url,
