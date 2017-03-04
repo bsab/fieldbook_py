@@ -1,12 +1,11 @@
 from setuptools import setup
 
 setup(name='fieldbook_py',
-      version='0.2.8',
+      version='0.3',
       description='Helper package for using the Fieldbook.com API',
       classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: Implementation :: CPython'
       ],
