@@ -17,6 +17,8 @@ setup(name='fieldbook_py',
       install_requires=[
             'requests'
       ],
-      setup_requires=['pytest-runner'],
-      tests_require=['pytest'],
+      test_suite='nose.collector',
+      tests_require=[
+          'nose'
+      ],
       zip_safe=False)
