@@ -71,3 +71,8 @@ To delete an existing row:
 
     >>> fieldbook.delete_row('sheet_name', 3)
 
+You can also get a list of Fieldbook sheets associated with the book:
+
+    >>> returned_sheet_list = fieldbook.get_sheet_list()
+    >>> print(returned_sheet_list)
+
