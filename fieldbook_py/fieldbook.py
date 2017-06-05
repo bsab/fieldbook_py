@@ -28,6 +28,21 @@ class FieldbookClient(object):
 
         return result
 
+    def get_sheet_list(self):
+        """Get the array of Fieldbook sheets associated with the book."""
+        try:
+            request = requests.get(self.__url,
+                                   auth=(self.__key, self.__secret),
+                                   params={})
+            logger.debug("Status Code: {0}".format(request.status_code))
+            return request.json()
+
+        except requests.ConnectionError as e:
+            logger.error('Cannot connect to Fieldbook API', exc_info=True)
+
+        except Exception as e:
+            logger.error(exc_info=True)
+
     def get_row(self, sheet, row_id, include_fields=None, exclude_fields=None, **kwargs):
         """Get a single row in a Fieldbook sheet"""
         url = self.get_resource_url(sheet, row_id)
